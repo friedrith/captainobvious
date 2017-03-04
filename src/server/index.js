@@ -37,7 +37,7 @@ app.disable('view cache')
 
 // set .html as the default extension
 app.set('view engine', 'html')
-app.set('views', path.join(__dirname, '../templates'))
+app.set('views', path.join(__dirname, '../../src/templates'))
 
 app.get('/', (req, res) => {
   res.render('index', {
@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
   })
 })
 
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, '../../src/public')))
 
 let server = app.listen(process.env.PORT, () => {
     winston.info(`listening on port ${server.address().port}`)
