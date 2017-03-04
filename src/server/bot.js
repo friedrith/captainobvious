@@ -22,18 +22,36 @@ class Bot extends EventEmitter {
         this.bot.on('message', (message) => {
             if (message.type === 'reaction_added' && message.reaction === reactionVote) {
                 // console.log('+1', message.item.ts)
+                console.log(message)
                 this.slack.api("reactions.get", { timestamp: message.item.ts, channel: message.item.channel, ts: message.item.ts, full: true }, (err, response) => {
                 //   console.log(err, response)
                   if (!err && response.message && response.message.reactions) {
                       for (let reaction of response.message.reactions) {
-                          console.log(reaction)
+                        //   console.log(reaction)
                           if (reaction.name === reactionVote && reaction.count >= process.env.VOTES) {
-                              this.emit('obvious', response.message)
+                              this.emit('obvious', { message: response.message, channelId: message.item.channel })
                           }
                       }
                   }
                 })
             }
+        })
+    }
+
+    confirm (message, channelId) {
+        console.log(message)
+        this.bot.getChannels()
+        .then(({ channels }) => {
+            // console.log(channels)
+            for (let channel of channels) {
+                if (channel.id === channelId) {
+                    this.bot.postMessageToChannel(channel.name, 'Roger that Captain Obvious!')
+                }
+            }
+          //
+        })
+        .catch((e) => {
+            winston.error('error to get channels', { error: e })
         })
     }
 

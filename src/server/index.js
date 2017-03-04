@@ -22,9 +22,12 @@ bot.on('ready', () => {
 
 let obvious = 'Demain est un autre jour'
 
-bot.on('obvious', (message) => {
-    winston.info(`new obvious sentence ${message.text} from ${message.user}`)
-    obvious = message.text.replace(/^\"/, '').replace(/\"$/, '')
+bot.on('obvious', ({ message, channelId }) => {
+    if (message.text !== obvious) {
+        winston.info(`new obvious sentence ${message.text} from ${message.user}`)
+        obvious = message.text.replace(/^\"/, '').replace(/\"$/, '')
+        bot.confirm(message, channelId)
+    }
 })
 
 let app = express()
