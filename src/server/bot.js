@@ -14,7 +14,6 @@ class Bot extends EventEmitter {
     }
 
     start () {
-
         let reactionVote = '+1'
         console.log('started')
         this.bot = new SlackBot(this.config)
