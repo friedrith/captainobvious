@@ -19,7 +19,8 @@ body {
   font-weight: 300;
   font-size: 3em;
   margin: 0;
-  padding: 0;
+  text-align: center;
+  padding: 0px 10px;
   text-shadow: 1px 1px 1px #2579a3, 2px 2px 1px #237ba7, 3px 3px 1px #217daa, 4px 4px 1px #1f7fad, 5px 5px 1px #1d81b1, 6px 6px 1px #1b83b4, 7px 7px 1px #1985b7, 8px 8px 1px #1787bb, 9px 9px 1px #1589be, 10px 10px 1px #148bc2, 11px 11px 1px #128dc5, 12px 12px 1px #108fc8, 13px 13px 1px #0e91cc, 14px 14px 1px #0c93cf, 15px 15px 1px #0a95d2, 16px 16px 1px #0897d6, 17px 17px 1px #0699d9, 18px 18px 1px #049bdc, 19px 19px 1px #029de0, 20px 20px 1px #009fe3;
 }
 .social {
