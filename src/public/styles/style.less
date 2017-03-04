@@ -1,0 +1,85 @@
+
+
+@color1: #009fe3; //blue
+@color1_hue2: #2777a0;
+
+@color2: #feed01; // green/yellow
+
+@primary: @color1;
+@primary_hue2: @color1_hue2;
+@secondary: @color2;
+
+
+@shadowMax : 50;
+
+.shadow_aux(@light, @dark, @shadowMax, @counter) when (@counter > 0) {
+  .shadow_aux(@light, @dark, @shadowMax, (@counter - 1));    // next iteration
+  text-shadow+: @counter*1px @counter*1px 1px rgb(red(@dark) + (red(@light) - red(@dark))/@shadowMax * @counter, green(@dark) + (green(@light) - green(@dark))/@shadowMax * @counter, blue(@dark) + (blue(@light)-blue(@dark))/@shadowMax * @counter);
+}
+
+.shadow (@light, @dark, @shadowMax) {
+    .shadow_aux(@light, @dark, @shadowMax, @shadowMax)
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    background: @primary;
+}
+
+.obvious {
+    font-family: 'Lato', sans-serif;
+    align-self: center;
+    color: white;
+    font-weight: 300;
+    font-size: 3em;
+    margin: 0;
+    padding: 0;
+
+    .shadow(@primary, @primary_hue2 , 20);
+}
+
+.social {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2em;
+
+    &-link {
+        display: inline-block;
+        width: 20px;
+        text-align: center;
+        margin: 0px 10px;
+    }
+
+    a {
+        color: @secondary;
+        text-decoration: none;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+.made-in-grenoble {
+    position: absolute;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    color: @secondary;
+    font-size: 0.9em;
+}
